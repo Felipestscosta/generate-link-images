@@ -749,7 +749,6 @@ export default function Home() {
                       className="max-w-32 bg-transparent text-zinc-400 placeholder:text-zinc-400/25 placeholder:text-sm border-b border-b-zinc-700 py-1.5"
                       id="preco"
                       type="text"
-                      placeholder={`${precos.camiseta}`}
                       required
                       {...register("preco")}
                     />
@@ -883,7 +882,6 @@ export default function Home() {
                         type="text"
                         placeholder=""
                         {...register("metatitle")}
-                        value={`${informacoesSeo[0]}`}
                       />
                     </label>
 
@@ -897,7 +895,6 @@ export default function Home() {
                         id="titulo"
                         placeholder=""
                         {...register("metadescription")}
-                        value={`${informacoesSeo[1]}`}
                       />
                     </label>
 
@@ -912,7 +909,6 @@ export default function Home() {
                         type="text"
                         placeholder=""
                         {...register("metakeywords")}
-                        value={`${informacoesSeo[2]}`}
                       />
                     </label>
                   </fieldset>
@@ -1005,7 +1001,6 @@ export default function Home() {
                       itemID="preco"
                       type="text"
                       required
-                      placeholder={`${precos.bone}`}
                       {...register("preco")}
                     />
                   </label>
@@ -1052,7 +1047,6 @@ export default function Home() {
                       className="max-w-32 bg-transparent text-zinc-200 placeholder:text-sm border-b border-r-0 border-l-0 border-t-0 py-1.5"
                       id="preco"
                       type="text"
-                      defaultValue={precos.cortaVento}
                     />
                   </label>
                 </div>
