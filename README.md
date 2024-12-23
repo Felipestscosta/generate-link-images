@@ -1,5 +1,5 @@
-# BRK Auto Cadastro
-Essa aplicação tem o objetivo de facilitar o cadastro dos principais produtos de produção própria, como: camisas, camisetas, bonés, corta-ventos e etc...
+# Brk Gerador de Links para Imagens
+ ⚠️Em construção...
 
 ### Requisitos
 - NodeJs v0.14.0
