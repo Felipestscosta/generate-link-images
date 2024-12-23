@@ -391,8 +391,8 @@ export default function Home() {
           <>
             <div className="fixed w-screen h-screen z-20 bg-zinc-100/10 backdrop-blur-[1px] blur-[1px]"></div>
             <div className="fixed w-[520px] z-30 bg-zinc-800 p-20 rounded-md">
-              <span className="flex justify-center items-center">
-                <CircleNotch size={50} className="animate-spin mr-4" />
+              <span className="flex justify-center items-center text-zinc-200">
+                <CircleNotch size={50} className="animate-spin mr-4 text-zinc-200" />
                 Processando...
               </span>
             </div>
