@@ -503,7 +503,7 @@ export default function Home() {
                       {...getInputProps()}
                     />
 
-                    <div className="flex flex-col min-w-[1020px] max-w-[1020px] gap-1 text-slate-100">
+                    <div className="flex flex-col sm:min-w-full md:min-w-[1020px] max-w-[1020px] gap-1 text-slate-100">
                       <h4>
                         {files.length === 0 ? (
                           <div className="flex flex-col gap-4 justify-center items-center text-slate-100/45">
@@ -514,7 +514,7 @@ export default function Home() {
                           "Imagens"
                         )}
                       </h4>
-                      <ul className="flex text-slate-100/45 gap-4">{thumbs}</ul>
+                      <ul className="flex flex-wrap text-slate-100/45 gap-4">{thumbs}</ul>
                     </div>
                   </label>
                 </section>
