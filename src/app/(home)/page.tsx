@@ -1,6 +1,5 @@
 "use client";
 import {
-  BaseballCap,
   CircleNotch,
   FileArrowDown,
   Hoodie,
@@ -389,7 +388,7 @@ export default function Home() {
       <div className="relative flex flex-col min-h-screen h-full w-full items-center justify-center gap-4 py-10 overflow-y-clip">
         {carregando ? (
           <>
-            <div className="fixed w-screen h-screen z-20 bg-zinc-100/10 backdrop-blur-[1px] blur-[1px]"></div>
+            <div className="fixed w-screen h-screen top-0 left-0 z-20 bg-zinc-100/10 backdrop-blur-[1px] blur-[1px]"></div>
             <div className="fixed w-[520px] z-30 bg-zinc-800 p-20 rounded-md">
               <span className="flex justify-center items-center text-zinc-200">
                 <CircleNotch size={50} className="animate-spin mr-4 text-zinc-200" />
@@ -427,7 +426,7 @@ export default function Home() {
         />
 
         {/* Escolha do Produto */}
-        <div className="fixed right-0 top-[50%] translate-y-[-50%] flex flex-col justify-center align-center divide-y z-10">
+        <div className="fixed right-0 top-[50%] translate-y-[-50%] hidden flex-col justify-center align-center divide-y z-10">
           <button
             onClick={() => setTipoDeProduto("camisa")}
             type="button"
@@ -451,30 +450,6 @@ export default function Home() {
           >
             <Tree size={32} />
             Algodão
-          </button>
-          <button
-            onClick={() => setTipoDeProduto("bone")}
-            type="button"
-            className={`flex flex-col gap-2 items-center justify-center py-4 px-1 text-sm ${
-              tipoDeProduto === "bone"
-                ? "bg-slate-200 text-zinc-950"
-                : "text-zinc-200 hover:bg-slate-200 hover:text-slate-950"
-            }`}
-          >
-            <BaseballCap size={32} />
-            Boné
-          </button>
-          <button
-            onClick={() => setTipoDeProduto("cortavento")}
-            type="button"
-            className={`flex flex-col gap-2 items-center justify-center py-4 px-1 text-sm rounded-bl-lg ${
-              tipoDeProduto === "cortavento"
-                ? "bg-slate-200 text-zinc-950"
-                : "text-zinc-200 hover:bg-slate-200 hover:text-slate-950"
-            } opacity-15 pointer-events-none`}
-          >
-            <Hoodie size={32} />
-            Corta-vento
           </button>
         </div>
 
@@ -581,7 +556,7 @@ export default function Home() {
                         id="principal"
                         type="text"
                         placeholder=""
-                        value={todasImagensData}
+                        defaultValue={todasImagensData}
                       />
                       <button
                         type="button"
@@ -602,7 +577,7 @@ export default function Home() {
                         id="masculinas"
                         type="text"
                         placeholder=""
-                        value={imagensMasculinasData}
+                        defaultValue={imagensMasculinasData}
                       />
                       <button
                         type="button"
@@ -623,7 +598,7 @@ export default function Home() {
                         id="femininas"
                         type="text"
                         placeholder=""
-                        value={imagensFemininasData}
+                        defaultValue={imagensFemininasData}
                       />
                       <button
                         type="button"
@@ -644,7 +619,7 @@ export default function Home() {
                         id="infantis"
                         type="text"
                         placeholder=""
-                        value={imagensInfantisData}
+                        defaultValue={imagensInfantisData}
                       />
                       <button
                         type="button"
@@ -655,400 +630,6 @@ export default function Home() {
                       </button>
                     </label>
                   </fieldset>
-                </div>
-              </>
-            )}
-
-            {tipoDeProduto === "camiseta" && (
-              <>
-                <section className="container">
-                  <label
-                    htmlFor="imagens"
-                    {...getRootProps({
-                      className:
-                        "dropzone flex bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 border-dashed w-full justify-center items-center cursor-pointer mb-10 mt-4 p-8 rounded-lg",
-                    })}
-                  >
-                    <input
-                      className="cursor-pointer text-zinc-200"
-                      type="file"
-                      id="imagens"
-                      multiple
-                      // required
-                      {...register("imagens")}
-                      {...getInputProps()}
-                    />
-
-                    <div className="flex flex-col gap-1 text-slate-100">
-                      <h4>
-                        {files.length === 0 ? (
-                          <div className="flex flex-col gap-4 justify-center items-center text-slate-100/45">
-                            <FileArrowDown size={32} />
-                            <p>Selecione as Imagens ou Solte Aqui</p>
-                          </div>
-                        ) : (
-                          "Imagens"
-                        )}
-                      </h4>
-                      <ul className="flex text-slate-100/45 gap-4">{thumbs}</ul>
-                    </div>
-                  </label>
-                </section>
-
-                <div className="flex gap-10 mb-16">
-                  <label
-                    className="flex flex-col gap-2 text-zinc-200"
-                    htmlFor="codigo"
-                  >
-                    Código
-                    <input
-                      className="max-w-32 bg-transparent text-zinc-400 placeholder:text-zinc-400/25 placeholder:text-sm border-b border-b-zinc-700 py-1.5 uppercase"
-                      id="codigo"
-                      type="text"
-                      placeholder="Ex: CASUAL / APC0_"
-                      required
-                      {...register("codigo")}
-                    />
-                  </label>
-
-                  <label
-                    className="flex flex-col gap-2 text-zinc-200"
-                    htmlFor="titulo"
-                  >
-                    Titulo
-                    <input
-                      className="min-w-96 bg-transparent text-zinc-400 placeholder:text-zinc-400/25 placeholder:text-sm border-b border-b-zinc-700 py-1.5"
-                      id="titulo"
-                      type="text"
-                      placeholder="Ex: Camiseta Agro Brk..."
-                      required
-                      {...register("titulo")}
-                    />
-                  </label>
-                  <label
-                    className="flex flex-col gap-2 text-zinc-200"
-                    htmlFor="estoque"
-                  >
-                    Estoque
-                    <input
-                      className="max-w-32 bg-transparent text-zinc-400 placeholder:text-sm border-b border-b-zinc-700 py-1.5"
-                      id="estoque"
-                      type="text"
-                      placeholder="Ex: C0..."
-                      required
-                      defaultValue={1000}
-                      {...register("estoque")}
-                    />
-                  </label>
-                  <label
-                    className="flex flex-col gap-2 text-zinc-200"
-                    htmlFor="preco"
-                  >
-                    Preço ( R$ )
-                    <input
-                      className="max-w-32 bg-transparent text-zinc-400 placeholder:text-zinc-400/25 placeholder:text-sm border-b border-b-zinc-700 py-1.5"
-                      id="preco"
-                      type="text"
-                      required
-                      {...register("preco")}
-                    />
-                  </label>
-                </div>
-
-                <div className="flex gap-4">
-                  <button
-                    onClick={() => setTipoAlgodao("comalgodao")}
-                    type="button"
-                    className={`pb-2 text-zinc-200 ${
-                      tipoAlgodao === "comalgodao"
-                        ? "border-b b-zinc-200"
-                        : "border-b border-transparent hover:border-b hover:border-zinc-200"
-                    }`}
-                  >
-                    Com Algodão Egípcio
-                  </button>
-                  <button
-                    onClick={() => setTipoAlgodao("semalgodao")}
-                    type="button"
-                    className={`pb-2 text-zinc-200 ${
-                      tipoAlgodao === "semalgodao"
-                        ? "border-b b-zinc-200"
-                        : "border-b border-transparent hover:border-b hover:border-zinc-200"
-                    }`}
-                  >
-                    Sem Algodão Egípcio
-                  </button>
-                </div>
-
-                {tipoAlgodao === "semalgodao" && (
-                  // Variações de Gêneros
-                  <div className="flex gap-4">
-                    <label
-                      className="flex gap-4 border border-zinc-800 py-4 px-10 rounded-lg cursor-pointer"
-                      htmlFor="genero-masculino"
-                    >
-                      <input
-                        id="genero-masculino"
-                        type="checkbox"
-                        {...register("tamanho_masculino")}
-                        defaultChecked={true}
-                      />
-                      <span className="text-zinc-200">Masculino</span>
-                    </label>
-                    <label
-                      className="flex gap-4 border border-zinc-800 py-4 px-10 rounded-lg cursor-pointer"
-                      htmlFor="genero-feminino"
-                    >
-                      <input
-                        id="genero-feminino"
-                        type="checkbox"
-                        {...register("tamanho_feminino")}
-                        defaultChecked={true}
-                      />
-                      <span className="text-zinc-200">Feminino</span>
-                    </label>
-                    <label
-                      className="flex gap-4 border border-zinc-800 py-4 px-10 rounded-lg cursor-pointer"
-                      htmlFor="genero-infantil"
-                    >
-                      <input
-                        id="genero-infantil"
-                        type="checkbox"
-                        {...register("tamanho_infantil")}
-                        defaultChecked={true}
-                      />
-                      <span className="text-zinc-200">Infantil</span>
-                    </label>
-                  </div>
-                )}
-
-                {tipoAlgodao === "comalgodao" && (
-                  // Variações de Cores
-                  <div className="flex gap-4">
-                    <label
-                      className="flex gap-4 border border-zinc-800 py-4 px-10 rounded-lg cursor-pointer"
-                      htmlFor="genero-feminino"
-                    >
-                      <input
-                        id="genero-feminino"
-                        type="checkbox"
-                        defaultChecked={true}
-                        {...register("cor_preto")}
-                      />
-                      <span className="text-zinc-200">Preto</span>
-                    </label>
-                    <label
-                      className="flex gap-4 border border-zinc-800 py-4 px-10 rounded-lg cursor-pointer"
-                      htmlFor="genero-infantil"
-                    >
-                      <input
-                        id="genero-infantil"
-                        type="checkbox"
-                        defaultChecked={true}
-                        {...register("cor_azul")}
-                      />
-                      <span className="text-zinc-200">Azul</span>
-                    </label>
-                    <label
-                      className="flex gap-4 border border-zinc-800 py-4 px-10 rounded-lg cursor-pointer"
-                      htmlFor="genero-masculino"
-                    >
-                      <input
-                        id="genero-masculino"
-                        type="checkbox"
-                        defaultChecked={true}
-                        {...register("cor_branco")}
-                      />
-                      <span className="text-zinc-200">Branco</span>
-                    </label>
-                  </div>
-                )}
-
-                {/* SEO */}
-                <div className="flex flex-col w-full">
-                  <fieldset className="border border-slate-200/10 p-10">
-                    <legend className="text-slate-200 font-bold text-lg px-4">
-                      SEO
-                    </legend>
-
-                    <label
-                      className="flex flex-col gap-2 text-zinc-200 mb-8"
-                      htmlFor="titulo"
-                    >
-                      Meta Title
-                      <input
-                        className="bg-transparent text-zinc-400 placeholder:text-zinc-400/25 placeholder:text-sm border-b border-b-zinc-700 py-1.5"
-                        id="titulo"
-                        type="text"
-                        placeholder=""
-                        {...register("metatitle")}
-                      />
-                    </label>
-
-                    <label
-                      className="flex flex-col gap-2 text-zinc-200 mb-8"
-                      htmlFor="titulo"
-                    >
-                      Meta Description
-                      <textarea
-                        className="bg-transparent text-zinc-400 placeholder:text-zinc-400/25 placeholder:text-sm border-b border-b-zinc-700 py-1.5"
-                        id="titulo"
-                        placeholder=""
-                        {...register("metadescription")}
-                      />
-                    </label>
-
-                    <label
-                      className="flex flex-col gap-2 text-zinc-200"
-                      htmlFor="titulo"
-                    >
-                      Meta Keywords
-                      <input
-                        className="bg-transparent text-zinc-400 placeholder:text-zinc-400/25 placeholder:text-sm border-b border-b-zinc-700 py-1.5"
-                        id="titulo"
-                        type="text"
-                        placeholder=""
-                        {...register("metakeywords")}
-                      />
-                    </label>
-                  </fieldset>
-                </div>
-              </>
-            )}
-
-            {tipoDeProduto === "bone" && (
-              <>
-                <section className="container">
-                  <label
-                    htmlFor="imagens"
-                    {...getRootProps({
-                      className:
-                        "dropzone flex bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 border-dashed w-full justify-center items-center cursor-pointer mb-10 mt-4 p-8 rounded-lg",
-                    })}
-                  >
-                    <input
-                      className="cursor-pointer text-zinc-200"
-                      type="file"
-                      id="imagens"
-                      multiple
-                      {...register("imagens")}
-                      {...getInputProps()}
-                    />
-
-                    <div className="flex flex-col gap-1 text-slate-100">
-                      <h4>
-                        {files.length === 0 ? (
-                          <div className="flex flex-col gap-4 justify-center items-center text-slate-100/45">
-                            <FileArrowDown size={32} />
-                            <p>Selecione as Imagens ou Solte Aqui</p>
-                          </div>
-                        ) : (
-                          "Imagens"
-                        )}
-                      </h4>
-                      <ul className="flex text-slate-100/45 gap-4">{thumbs}</ul>
-                    </div>
-                  </label>
-                </section>
-
-                <div className="flex gap-4">
-                  <label
-                    className="flex flex-col gap-2 text-zinc-200"
-                    htmlFor="codigo"
-                  >
-                    Código
-                    <input
-                      className="max-w-32 bg-transparent text-zinc-200 placeholder:text-sm border-b border-r-0 border-l-0 border-t-0 py-1.5 uppercase"
-                      id="codigo"
-                      type="text"
-                      placeholder="Ex: BA0..."
-                      {...register("codigo")}
-                    />
-                  </label>
-                  <label
-                    className="flex flex-col gap-2 text-zinc-200"
-                    htmlFor="titulo"
-                  >
-                    Titulo
-                    <input
-                      className="min-w-96 bg-transparent text-zinc-200 placeholder:text-sm border-b border-r-0 border-l-0 border-t-0 py-1.5"
-                      id="titulo"
-                      type="text"
-                      placeholder="Ex: Boné Agro Brk..."
-                      {...register("titulo")}
-                    />
-                  </label>
-                  <label
-                    className="flex flex-col gap-2 text-zinc-200"
-                    htmlFor="estoque"
-                  >
-                    Estoque
-                    <input
-                      className="max-w-32 bg-transparent text-zinc-200 placeholder:text-sm border-b border-r-0 border-l-0 border-t-0 py-1.5"
-                      id="estoque"
-                      type="text"
-                      placeholder="Ex: C0..."
-                      {...register("estoque")}
-                    />
-                  </label>
-                  <label
-                    className="flex flex-col gap-2 text-zinc-200"
-                    htmlFor="preco"
-                  >
-                    Preço ( R$ )
-                    <input
-                      className="max-w-32 bg-transparent text-zinc-200 placeholder:text-sm border-b border-r-0 border-l-0 border-t-0 py-1.5"
-                      itemID="preco"
-                      type="text"
-                      required
-                      {...register("preco")}
-                    />
-                  </label>
-                </div>
-              </>
-            )}
-
-            {tipoDeProduto === "cortavento" && (
-              <>
-                <input type="file" name="" id="" multiple />
-
-                <div className="flex gap-4">
-                  <label className="flex flex-col gap-2" htmlFor="codigo">
-                    Código
-                    <input
-                      className="max-w-32 bg-transparent text-zinc-200 placeholder:text-sm border-b border-r-0 border-l-0 border-t-0 py-1.5 uppercase"
-                      id="codigo"
-                      type="text"
-                      placeholder="Ex: CV0..."
-                    />
-                  </label>
-                  <label className="flex flex-col gap-2" htmlFor="titulo">
-                    Titulo
-                    <input
-                      className="min-w-96 bg-transparent text-zinc-200 placeholder:text-sm border-b border-r-0 border-l-0 border-t-0 py-1.5"
-                      id="titulo"
-                      type="text"
-                      placeholder="Ex: Jaqueta Corta Vento Brk..."
-                    />
-                  </label>
-                  <label className="flex flex-col gap-2" htmlFor="estoque">
-                    Estoque
-                    <input
-                      className="max-w-32 bg-transparent text-zinc-200 placeholder:text-sm border-b border-r-0 border-l-0 border-t-0 py-1.5"
-                      id="estoque"
-                      type="text"
-                      placeholder="Ex: C0..."
-                      defaultValue={1000}
-                    />
-                  </label>
-                  <label className="flex flex-col gap-2" htmlFor="preco">
-                    Preço ( R$ )
-                    <input
-                      className="max-w-32 bg-transparent text-zinc-200 placeholder:text-sm border-b border-r-0 border-l-0 border-t-0 py-1.5"
-                      id="preco"
-                      type="text"
-                    />
-                  </label>
                 </div>
               </>
             )}
