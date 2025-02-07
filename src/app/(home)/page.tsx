@@ -291,7 +291,7 @@ export default function Home() {
 
         // Imagens por Gênero
         if (file.name.toLowerCase().includes("masc")) {
-          imagensMasculinas.push(response.data.eager[0].secure_url);
+          imagensMasculinas.push(urlDaImagem);
         }
 
         if (file.name.toLowerCase().includes("fem")) {
