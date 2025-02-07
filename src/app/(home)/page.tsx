@@ -284,13 +284,10 @@ export default function Home() {
       const file = filesOrdenados[i];
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "ml_default");
 
       try {
-        const response = await axios.post(
-          "https://api.cloudinary.com/v1_1/daruxsllg/image/upload",
-          formData
-        );
+        const response:any = await axios.post("/api/upload-image-s3",formData);
+        const urlDaImagem = response.data.file.location;
 
         // Imagens por Gênero
         if (file.name.toLowerCase().includes("masc")) {
@@ -298,27 +295,27 @@ export default function Home() {
         }
 
         if (file.name.toLowerCase().includes("fem")) {
-          imagensFemininas.push(response.data.eager[0].secure_url);
+          imagensFemininas.push(urlDaImagem);
         }
 
         if (file.name.toLowerCase().includes("inf")) {
-          imagensInfantis.push(response.data.eager[0].secure_url);
+          imagensInfantis.push(urlDaImagem);
         }
 
         // Imagens por Cores
         if (file.name.toLowerCase().includes("branco")) {
-          imagensCorBranco.push(response.data.eager[0].secure_url);
+          imagensCorBranco.push(urlDaImagem);
         }
 
         if (file.name.toLowerCase().includes("preto")) {
-          imagensCorPreto.push(response.data.eager[0].secure_url);
+          imagensCorPreto.push(urlDaImagem);
         }
 
         if (file.name.toLowerCase().includes("azul")) {
-          imagensCorAzul.push(response.data.eager[0].secure_url);
+          imagensCorAzul.push(urlDaImagem);
         }
 
-        todasAsImagens.push(response.data.eager[0].secure_url);
+        todasAsImagens.push(urlDaImagem);
       } catch (error) {
         console.error("Erro no Upload da Imagem: ", error);
       }
@@ -365,23 +362,24 @@ export default function Home() {
       });
   };
 
-  const handleFileUpload = (event: any) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+  // const handleFileUpload = (event: any) => {
+  //   console.log(event)
+  //   const file = event.target.files[0];
+  //   const reader = new FileReader();
 
-    reader.onload = (e: any) => {
-      const arrayBuffer = e.target.result;
-      const workbook = readFile(arrayBuffer, { type: "array" });
-      const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-      const jsonData = utils.sheet_to_json(worksheet, { header: 1 });
+  //   reader.onload = (e: any) => {
+  //     const arrayBuffer = e.target.result;
+  //     const workbook = readFile(arrayBuffer, { type: "array" });
+  //     const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+  //     const jsonData = utils.sheet_to_json(worksheet, { header: 1 });
 
-      const columnCData = jsonData.slice(1).map((row: any) => row[1]);
+  //     const columnCData = jsonData.slice(1).map((row: any) => row[1]);
 
-      setData(columnCData);
-    };
+  //     setData(columnCData);
+  //   };
 
-    reader.readAsArrayBuffer(file);
-  };
+  //   reader.readAsArrayBuffer(file);
+  // };
 
   return (
     <>

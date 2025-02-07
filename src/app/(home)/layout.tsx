@@ -1,12 +1,12 @@
+import "../../styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../../styles/globals.css";
 import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "BRK | Gerador de Links de Imagens",
+  title: "Brk | Gerador de Links de Imagens",
   description: "Aplicação desenvolvida com o objetivo facilitar nos cadastros de produtos variados.",
 };
 
